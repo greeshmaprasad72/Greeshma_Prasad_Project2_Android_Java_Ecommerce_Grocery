@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "47576709561",
+    "project_id": "greeshmaprasadproject2",
+    "storage_bucket": "greeshmaprasadproject2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47576709561:android:3911d32c203b6207ef5e68",
+        "android_client_info": {
+          "package_name": "com.example.greeshma_prasad_project2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47576709561-cip3m6m1kp2uqou0uq6i8v1gsgtsjpub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1JaMsEYgZelGd8sAy1b_wMI8Vfnr_bg4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47576709561-cip3m6m1kp2uqou0uq6i8v1gsgtsjpub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

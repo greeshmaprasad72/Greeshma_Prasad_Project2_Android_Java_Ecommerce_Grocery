@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:id="@+id/card_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/vegitables"
+            android:scaleType="centerCrop"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_gravity="start"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tomato"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="farm fresh tomato 1kg"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="$5"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:textColor="@color/green"
+                android:fontFamily="@font/poppins_bold" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_continue_otp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Add To Bag"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+

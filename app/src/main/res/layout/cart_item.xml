@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:id="@+id/card_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/im_product_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/vegitables"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+        <LinearLayout
+            android:id="@+id/ll_cart_product_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_weight="1"
+            android:layout_gravity="start"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ll_cart_button"
+            app:layout_constraintStart_toEndOf="@id/im_product_image">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tomato"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="farm fresh tomato 1kg"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="$5"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:textSize="24sp"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_cart_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ll_cart_product_details"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+           >
+            <TextView
+                android:id="@+id/btnDecreaseCart"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:text="-"
+                android:textColor="@color/green"
+                android:fontFamily="@font/poppins_semibold"
+               android:gravity="center"
+
+                android:layout_gravity="center_vertical"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvCartQuantity"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="number"
+                android:textColor="@color/green"
+                android:fontFamily="@font/poppins_bold"
+                android:text="1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/btnIncreaseCart"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:text="+"
+                android:textColor="@color/green"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.cardview.widget.CardView>
+
