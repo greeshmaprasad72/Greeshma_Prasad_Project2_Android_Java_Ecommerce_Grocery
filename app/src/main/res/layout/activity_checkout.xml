@@ -5,19 +5,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CheckoutActivity">
+    tools:context=".payment.CheckoutActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_toolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:orientation="horizontal"
+        android:layout_margin="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageview_otp_back_arrow"
+            android:id="@+id/imageview_back_arrow"
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:layout_gravity="center_vertical"
@@ -25,6 +26,7 @@
             android:src="@drawable/baseline_arrow_back_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+
 
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,9 +40,9 @@
             android:text="Checkout Screen"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:layout_margin="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageview_otp_back_arrow"
+            app:layout_constraintStart_toEndOf="@id/imageview_back_arrow"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

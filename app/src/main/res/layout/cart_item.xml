@@ -19,6 +19,7 @@
             android:layout_height="120dp"
             android:src="@drawable/vegitables"
             android:scaleType="centerCrop"
+            android:layout_margin="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +27,7 @@
             />
         <LinearLayout
             android:id="@+id/ll_cart_product_details"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="15dp"
             android:layout_weight="1"
@@ -38,6 +39,7 @@
             app:layout_constraintStart_toEndOf="@id/im_product_image">
 
             <TextView
+                android:id="@+id/tv_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tomato"
@@ -48,16 +50,19 @@
                 android:fontFamily="@font/poppins_semibold"
                 />
             <TextView
+                android:id="@+id/tv_product_quantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="farm fresh tomato 1kg"
+                android:text="1kg"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="center"
+                android:textSize="12sp"
                 android:gravity="start"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:fontFamily="@font/poppins_regular"
                 />
             <TextView
+                android:id="@+id/tv_product_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="$5"
@@ -89,8 +94,7 @@
                 android:text="-"
                 android:textColor="@color/green"
                 android:fontFamily="@font/poppins_semibold"
-               android:gravity="center"
-
+                android:gravity="center"
                 android:layout_gravity="center_vertical"
                 android:textSize="14sp" />
 

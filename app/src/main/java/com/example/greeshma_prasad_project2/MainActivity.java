@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.example.greeshma_prasad_project2.authentication.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         btnGetStarted.setOnClickListener(view -> {
-            Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+            Intent intent=new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         });
     }

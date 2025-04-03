@@ -1,27 +1,27 @@
-package com.example.greeshma_prasad_project2;
+package com.example.greeshma_prasad_project2.authentication;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.greeshma_prasad_project2.R;
 import com.example.greeshma_prasad_project2.models.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +37,8 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private DatabaseReference myRef;
+
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
         etConfirmPassword=findViewById(R.id.edittext_confirm_password);
         buttonRegister=findViewById(R.id.button_submit);
         tvLogin=findViewById(R.id.textview_login);
+        progressBar=findViewById(R.id.progress_bar);
         buttonRegister.setOnClickListener(view -> {
             String email= etEmail.getText().toString();
             String password=etPassword.getText().toString();
@@ -65,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
             String mobile=etMobile.getText().toString();
             String confirmPassword=etConfirmPassword.getText().toString();
             if(isValidFields(mobile,username,email,password,confirmPassword)){
+                showProgressBar();
                 saveRegister(email,password,username,mobile);
             }
 
@@ -72,6 +76,24 @@ public class RegisterActivity extends AppCompatActivity {
         tvLogin.setOnClickListener(view -> {
             finish();
         });
+    }
+    private void showProgressBar(){
+        progressBar.setVisibility(VISIBLE);
+        buttonRegister.setVisibility(GONE);
+        etEmail.setEnabled(false);
+        etPassword.setEnabled(false);
+        etUSername.setEnabled(false);
+        etMobile.setEnabled(false);
+        etConfirmPassword.setEnabled(false);
+    }
+    private void hideProgressBar(){
+        progressBar.setVisibility(GONE);
+        buttonRegister.setVisibility(VISIBLE);
+        etEmail.setEnabled(true);
+        etPassword.setEnabled(true);
+        etUSername.setEnabled(true);
+        etMobile.setEnabled(true);
+        etConfirmPassword.setEnabled(true);
     }
 
 
@@ -83,6 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                         saveUSerDetails(user,email,username,mobile);
                         Log.e("TAG", "saveRegister: "+user);
                     }else{
+                        hideProgressBar();
                         Toast.makeText(this, "Failed to register"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -94,12 +117,14 @@ public class RegisterActivity extends AppCompatActivity {
         User user= new User(username,email,mobile);
         myRef.child(firebaseUser.getUid()).setValue(user)
                 .addOnCompleteListener(this, task -> {
+                    hideProgressBar();
                     if(task.isSuccessful()){
                         Toast.makeText(this, "Registration Completed Successfully.", Toast.LENGTH_SHORT).show();
-                        Intent intent =new Intent(this,LoginActivity.class);
+                        Intent intent =new Intent(this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     }else {
+                        hideProgressBar();
                         Toast.makeText(this, "Registration failed please try again.", Toast.LENGTH_SHORT).show();
                     }
                 });

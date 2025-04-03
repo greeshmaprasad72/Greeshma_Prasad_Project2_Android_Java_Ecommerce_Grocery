@@ -16,36 +16,44 @@
         android:theme="@style/Theme.Greeshma_Prasad_Project2"
         tools:targetApi="31">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".category.CategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ThankyouActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CheckoutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PaymentActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CartActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProductDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SetUsernameActivity"
-            android:exported="false" />
-        <activity
-            android:name=".OtpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
+            android:name=".cart.AddressDetailsActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize|stateAlwaysVisible"/>
+            android:windowSoftInputMode="adjustResize|stateAlwaysVisible" />
+        <activity
+            android:name=".payment.CardDetailsActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|stateAlwaysVisible" />
+        <activity
+            android:name=".product.ProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".authentication.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".payment.ThankyouActivity"
+            android:exported="false" />
+        <activity
+            android:name=".payment.CheckoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".payment.PaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".cart.CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".productDetails.ProductDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".category.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".authentication.LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|stateAlwaysVisible" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
