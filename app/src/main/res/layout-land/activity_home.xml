@@ -54,7 +54,6 @@
             android:textSize="24sp"
             android:textColor="@color/black"
             android:fontFamily="@font/poppins_semibold"
-            app:layout_constraintStart_toEndOf="@id/imageview_otp_back_arrow"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

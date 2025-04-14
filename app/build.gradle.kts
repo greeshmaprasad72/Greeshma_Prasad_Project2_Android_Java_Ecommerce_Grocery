@@ -47,6 +47,6 @@ dependencies {
     implementation(libs.firebase.database)
     implementation (libs.glide)
     implementation (libs.awesome.validation)
-    implementation ("com.github.cdflynn:checkview:v1.2")
+    implementation (libs.checkview)
 
 }

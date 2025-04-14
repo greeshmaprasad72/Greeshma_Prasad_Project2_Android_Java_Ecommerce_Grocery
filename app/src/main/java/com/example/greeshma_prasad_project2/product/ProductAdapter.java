@@ -62,7 +62,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                 .into(holder.imProductImage);
         holder.txtProductName.setText(product.getName());
         holder.txtProductQuantity.setText(product.getQuantity());
-        holder.txtProductPrice.setText(String.format("$  %s", product.getPrice()));
+        holder.txtProductPrice.setText(String.format("$ %.2f", product.getPrice()));
         holder.btAddToCart.setOnClickListener(view -> {
             holder.btAddToCart.setVisibility(GONE);
             holder.llAddToCart.setVisibility(VISIBLE);

@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -28,7 +29,9 @@ import com.example.greeshma_prasad_project2.cart.CartActivity;
 import com.example.greeshma_prasad_project2.models.Cart;
 import com.example.greeshma_prasad_project2.models.Product;
 import com.example.greeshma_prasad_project2.product.ProductAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -263,45 +266,53 @@ public class ProductDetailsActivity extends AppCompatActivity {
         tvProductName.setText(product.getName());
         tvDescription.setText(product.getDescription());
         tvCategory.setText(category);
-        tvPrice.setText(String.format("$  %s", product.getPrice()));
+        tvPrice.setText(String.format("$ %.2f", product.getPrice()));
         tvQuantity.setText(product.getQuantity());
         btnAddToCart.setOnClickListener(view -> {
                 addProductToCart(product);
         });
 
     }
+    private void addProductToCart(Product product) {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference cartReference = FirebaseDatabase.getInstance().getReference("cart").child(userId);
 
-    private void  addProductToCart(Product product){
-        String userId=FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference cartReference= FirebaseDatabase.getInstance().getReference("cart").child(userId);
-        cartReference.child(product.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    Cart cart=snapshot.getValue(Cart.class);
-                    if(cart!=null){
-                        int updatedCount=cart.getProductCount()+1;
-                        cartReference.child(product.getId()).child("productCount").setValue(updatedCount).addOnSuccessListener(unused -> {
-                            Intent intent=new Intent(ProductDetailsActivity.this, CartActivity.class);
-                            startActivity(intent);
-                            finish();
-                        });
+        cartReference.child(product.getId()).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DataSnapshot snapshot = task.getResult();
+                if (snapshot.exists()) {
+
+                    Cart cart = snapshot.getValue(Cart.class);
+                    if (cart != null) {
+                        int updatedCount = cart.getProductCount() + 1;
+                        cartReference.child(product.getId()).child("productCount").setValue(updatedCount)
+                                .addOnSuccessListener(unused -> {
+                                    Intent intent = new Intent(ProductDetailsActivity.this, CartActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                });
                     }
-                }else{
-                    cartReference. setValue(new Cart(product.getId(),product.getName(),product.getPrice(),product.getQuantity(),product.getImages().get(0),product.getDescription(),1))
+                } else {
+
+                    cartReference.child(product.getId())
+                            .setValue(new Cart(product.getId(),
+                                    product.getName(),
+                                    product.getPrice(),
+                                    product.getQuantity(),
+                                    product.getImages().get(0),
+                                    product.getDescription(),
+                                    1))
                             .addOnSuccessListener(unused -> {
-                                Intent intent=new Intent(ProductDetailsActivity.this, CartActivity.class);
+                                Intent intent = new Intent(ProductDetailsActivity.this, CartActivity.class);
                                 startActivity(intent);
                                 finish();
                             });
                 }
-            }
+            } else {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(ProductDetailsActivity.this, "Failed to check cart data", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
+
 }

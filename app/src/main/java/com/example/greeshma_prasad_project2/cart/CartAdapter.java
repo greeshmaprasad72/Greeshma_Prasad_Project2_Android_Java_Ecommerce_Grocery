@@ -53,7 +53,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         holder.tvProductName.setText(cart.getProductName());
         holder.tvProductQuantity.setText(cart.getProductQuantity());
         double totalPrice = cart.getProductPrice() * cart.getProductCount();
-        holder.tvProductPrice.setText(String.format("$  %s", totalPrice));
+        holder.tvProductPrice.setText(String.format("$ %.2f", totalPrice));
         holder.tvCartQuantity.setText(String.valueOf(cart.getProductCount()));
         holder.tvCartPlusButton.setOnClickListener(view -> {
             int updatedCount = cart.getProductCount() + 1;

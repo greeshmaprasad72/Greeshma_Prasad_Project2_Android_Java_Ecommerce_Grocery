@@ -9,9 +9,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_margin="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -44,9 +45,11 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <ScrollView
+        android:id="@+id/sv_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
+        android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cl_toolbar"
@@ -59,17 +62,17 @@
         android:layout_margin="20dp">
         <TextView
             android:id="@+id/textview_label_card_name"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/card_holder_name"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textview_label_card_number"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <EditText
             android:id="@+id/edittext_card_name"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
             android:fontFamily="@font/poppins_regular"
@@ -80,33 +83,34 @@
             android:inputType="text"
             android:imeOptions="actionNext"
             android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/edittext_card_number"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview_label_card_name" />
         <TextView
             android:id="@+id/textview_label_card_number"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/card_number"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edittext_card_name" />
+            app:layout_constraintStart_toEndOf="@id/textview_label_card_name"
+            app:layout_constraintTop_toTopOf="parent" />
         <EditText
             android:id="@+id/edittext_card_number"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
             android:fontFamily="@font/poppins_regular"
             android:hint="@string/xxxx_xxxx_xxxx_xxxx"
+            android:layout_marginLeft="5dp"
             android:padding="13dp"
             android:maxLength="16"
             android:inputType="number"
             android:imeOptions="actionNext"
             android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/edittext_card_name"
             app:layout_constraintTop_toBottomOf="@id/textview_label_card_number" />
         <LinearLayout
             android:id="@+id/ll_card_details"
@@ -142,8 +146,6 @@
                     android:fontFamily="@font/poppins_regular"
                     android:hint="@string/mm_yy"
                     android:inputType="number"
-                    android:maxLength="5"
-                    android:maxLines="1"
                     android:padding="13dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -184,7 +186,7 @@
         </LinearLayout>
         <TextView
             android:id="@+id/textview_label_country"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/country"
@@ -192,45 +194,48 @@
             android:inputType="text"
             android:textSize="14sp"
             android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textview_postal_code"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ll_card_details" />
         <EditText
             android:id="@+id/edittext_country"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
             android:fontFamily="@font/poppins_regular"
             android:hint="@string/country"
             android:padding="13dp"
+            android:layout_marginBottom="20dp"
             android:inputType="textPersonName"
             android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/edittext_postal_code"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview_label_country" />
         <TextView
             android:id="@+id/textview_postal_code"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/postal_code"
             android:layout_marginTop="5dp"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edittext_country" />
+            app:layout_constraintStart_toEndOf="@id/textview_label_country"
+            app:layout_constraintTop_toBottomOf="@id/ll_card_details" />
         <EditText
             android:id="@+id/edittext_postal_code"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_edittext"
             android:fontFamily="@font/poppins_regular"
             android:hint="@string/postal_code"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="20dp"
             android:padding="13dp"
             android:inputType="textPersonName"
             android:maxLines="1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/edittext_country"
             app:layout_constraintTop_toBottomOf="@id/textview_postal_code" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
@@ -242,6 +247,7 @@
         android:background="@drawable/rounded_button"
         android:text="@string/proceed_to_payment"
         android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/sv_container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

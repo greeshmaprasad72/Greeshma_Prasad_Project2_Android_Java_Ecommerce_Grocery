@@ -40,6 +40,8 @@ public class CardDetailsActivity extends AppCompatActivity {
         etPostalCode=findViewById(R.id.edittext_postal_code);
         btPayment=findViewById(R.id.button_proceed_to_payment);
         validatePostalCode();
+        validateExpiryDate();
+        validateCardNumber();
         imBackArrow.setOnClickListener(view -> finish());
         btPayment.setOnClickListener(view -> {
             if(isValidFields()){
@@ -52,6 +54,71 @@ public class CardDetailsActivity extends AppCompatActivity {
         String pattern ="^[A-Z][0-9][A-Z]\\s[0-9][A-Z][0-9]$";
         return postalcode.matches(pattern);
     }
+
+    private void validateCardNumber(){
+        etCardNumber.addTextChangedListener(new TextWatcher() {
+            private String current = "";
+
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().equals(current)) {
+                    String clean = s.toString().replaceAll("[^\\d]", "");
+
+                    if (clean.length() > 16) {
+                        clean = clean.substring(0, 16);
+                    }
+
+                    StringBuilder formatted = new StringBuilder();
+                    for (int i = 0; i < clean.length(); i++) {
+                        if (i > 0 && i % 4 == 0) {
+                            formatted.append(' ');
+                        }
+                        formatted.append(clean.charAt(i));
+                    }
+
+                    current = formatted.toString();
+                    etCardNumber.setText(current);
+                    etCardNumber.setSelection(current.length());
+                }
+            }
+        });
+
+    }
+    private void validateExpiryDate() {
+        etExpiryDate.addTextChangedListener(new TextWatcher() {
+            private boolean isDeleting = false;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                isDeleting = count > after;
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String input = s.toString();
+                if (isDeleting) {
+
+                    return;
+                }
+
+                if (input.length() == 2 && !input.contains("/")) {
+                    etExpiryDate.setText(input + "/");
+                    etExpiryDate.setSelection(etExpiryDate.getText().length());
+                }
+            }
+        });
+    }
+
     private void  validatePostalCode(){
         etPostalCode.addTextChangedListener(new TextWatcher() {
             private boolean isUpdating = false;

@@ -21,7 +21,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.greeshma_prasad_project2.R;
 import com.example.greeshma_prasad_project2.category.CategoryActivity;
-import com.example.greeshma_prasad_project2.category.HomeActivity;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

@@ -6,77 +6,90 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".payment.ThankyouActivity">
+
     <cdflynn.android.library.checkview.CheckView
         android:id="@+id/imageview_success"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:src="@drawable/checked"
         android:scaleType="centerCrop"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
         app:checkView_strokeWidth="10dp"
+        app:layout_constraintEnd_toStartOf="@id/recyclerview_cart_items"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textview_success_message"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/order_placed_successfully"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
         android:textColor="@color/black"
         android:fontFamily="@font/poppins_bold"
-        android:layout_margin="15dp"
-        android:textSize="28sp"
-        android:gravity="center"
+        android:textSize="24sp"
+        android:gravity="start"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageview_success"
-        />
+        app:layout_constraintEnd_toStartOf="@id/recyclerview_cart_items"
+        app:layout_constraintTop_toBottomOf="@id/imageview_success" />
+
     <TextView
         android:id="@+id/textview_success_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/thank_you_for_yoour_order_we_will_devliver_your_order_shortley_"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="start"
         android:textColor="@color/black"
         android:fontFamily="@font/poppins_regular"
-        android:layout_margin="15dp"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_success_message"
-        />
+        app:layout_constraintEnd_toStartOf="@id/recyclerview_cart_items"
+        app:layout_constraintTop_toBottomOf="@id/textview_success_message" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_cart_items"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@id/button_send_recipet"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_success_description" />
+        app:layout_constraintStart_toEndOf="@id/textview_success_message"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Bottom Section: Buttons -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_send_recipet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/circle_button_ng"
         android:text="@string/send_receipt"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/button_back_home"
         app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_back_home"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_button"
         android:text="@string/back_to_home"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/button_send_recipet" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

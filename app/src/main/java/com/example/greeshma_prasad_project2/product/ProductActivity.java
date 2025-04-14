@@ -116,6 +116,7 @@ public class ProductActivity extends AppCompatActivity implements CategoryDrawer
     @Override
     protected void onResume() {
         super.onResume();
+        fetchProducts();
 
     }
 
@@ -127,7 +128,16 @@ public class ProductActivity extends AppCompatActivity implements CategoryDrawer
 
     }
     private  void  setCategoryRecyclerView(){
-        drawerAdapter=new CategoryDrawerAdapter(this,categoryList,categoryName,this);
+        int selectedPosition=-1;
+
+        for(int i=0;i<categoryList.size();i++) {
+            if (categoryList.get(i).getName().equals(categoryName)) {
+                selectedPosition = i;
+                break;
+
+            }
+        }
+        drawerAdapter=new CategoryDrawerAdapter(this,categoryList,categoryName,selectedPosition,this);
         rvDrawer.setLayoutManager(new LinearLayoutManager(this));
         rvDrawer.setAdapter(drawerAdapter);
 
@@ -178,29 +188,39 @@ public class ProductActivity extends AppCompatActivity implements CategoryDrawer
     }
 
     private void getCategoryData(){
-        categoryList=new ArrayList<>();
-        mReference=database.getReference("categories");
-        mReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                categoryList.clear();
-                Log.i("TAG", "onDataChange: "+snapshot.getValue());
-                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    Category category=dataSnapshot.getValue(Category.class);
-                    if(category!=null){
-                        categoryList.add(category);
+        try{
+            categoryList=new ArrayList<>();
+            mReference=database.getReference("categories");
+            mReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    try{
+                        categoryList.clear();
+                        Log.i("TAG", "onDataChange: "+snapshot.getValue());
+                        for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                            Category category=dataSnapshot.getValue(Category.class);
+                            if(category!=null){
+                                categoryList.add(category);
+                            }
+                            hideProgressBar();
+                            setCategoryRecyclerView();
+                        }
+                    }catch (Exception e){
+                        Log.i("TAG", "onDataChange: "+e);
                     }
-                    hideProgressBar();
-                    setCategoryRecyclerView();
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                hideProgressBar();
-                Toast.makeText(ProductActivity.this, "Failed to load category.", Toast.LENGTH_SHORT).show();
-            }
-        });
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    hideProgressBar();
+                    Toast.makeText(ProductActivity.this, "Failed to load category.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }catch (Exception e){
+            Log.i("TAG", "getCategoryData: "+e);
+        }
+
     }
 
     private void backButtonClick(){
@@ -225,7 +245,7 @@ public class ProductActivity extends AppCompatActivity implements CategoryDrawer
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 productList.clear();
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    Product product=dataSnapshot.getValue(Product.class);
+                     Product product=dataSnapshot.getValue(Product.class);
                     if(product!=null){
                         productList.add(product);
                     }
@@ -254,6 +274,7 @@ public class ProductActivity extends AppCompatActivity implements CategoryDrawer
     @Override
     public void onSelected(String categoryName) {
         this.categoryName=categoryName;
+        txtCategory.setText(categoryName);
         fetchProducts();
         drawerLayout.closeDrawer(GravityCompat.START);
     }

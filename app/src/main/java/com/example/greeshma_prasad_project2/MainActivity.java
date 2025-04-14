@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView imBackground=findViewById(R.id.im_background);
         Glide.with(this)
                 .load(R.drawable.bg)
-                .override(300, 300)
+                .override(500, 500)
                 .into(imBackground);
 
 

@@ -25,17 +25,21 @@ public class CategoryDrawerAdapter extends RecyclerView.Adapter<CategoryDrawerAd
     private int selectedPosition=-1;
     private categoryListener listener;
     private String selectedCategory;
+
     public interface categoryListener{
         void onSelected(String categoryName);
     }
 
-    public CategoryDrawerAdapter(Context mContext, List<Category> categoryList,String selectedCategory,categoryListener listener) {
+    public CategoryDrawerAdapter(Context mContext, List<Category> categoryList,String selectedCategory,int selectedPosition,categoryListener listener) {
         this.mContext = mContext;
         this.categoryList = categoryList;
         this.selectedCategory=selectedCategory;
         this.listener=listener;
+        this.selectedPosition=selectedPosition;
 
-    }
+        }
+
+
 
     private List<Category> categoryList;
 
@@ -57,14 +61,21 @@ public class CategoryDrawerAdapter extends RecyclerView.Adapter<CategoryDrawerAd
                 .load(category.getImage())
                 .override(300, 300)
                 .into(holder.pIamge);
-        if (category.getName() .equals( selectedCategory)) {
-            holder.cardView.setCardBackgroundColor(Color.parseColor("#FFEB3B"));
-        } else {
-            holder.cardView.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+
+        if (position== selectedPosition) {
+            holder.cardView.setBackgroundResource(R.drawable.circle_button_ng);
+
+        }
+        else {
+            holder.cardView.setBackgroundResource(R.drawable.rounded_edittext);
         }
         holder.cardView.setOnClickListener(view -> {
+
+            int previosSelection=selectedPosition;
             selectedCategory=category.getName();
-            notifyDataSetChanged();
+            selectedPosition=holder.getAdapterPosition();
+            notifyItemChanged(previosSelection);
+            notifyItemChanged(selectedPosition);
             listener.onSelected(selectedCategory);
 
         });

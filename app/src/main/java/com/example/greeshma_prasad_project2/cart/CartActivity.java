@@ -6,7 +6,6 @@ import static android.view.View.VISIBLE;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,18 +16,14 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.greeshma_prasad_project2.R;
-import com.example.greeshma_prasad_project2.category.HomeActivity;
 import com.example.greeshma_prasad_project2.models.Cart;
-import com.example.greeshma_prasad_project2.payment.PaymentActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -147,6 +142,7 @@ public class CartActivity extends AppCompatActivity {
             btCartContinue.setVisibility(GONE);
             llEmptyCart.setVisibility(VISIBLE);
 
+
         }else {
             clSummary.setVisibility(VISIBLE);
             recyclerview.setVisibility(VISIBLE);
@@ -167,7 +163,7 @@ public class CartActivity extends AppCompatActivity {
         } else{
             deliveryFee=4.99;
         }
-        tax=Math.round((subTotal* 0.15)*100.0)/100.0;
+        tax=Math.round((subTotal* 0.13)*100.0)/100.0;
         total=subTotal+deliveryFee+tax;
         tvSubTotal.setText(String.format(Locale.US, "$ %.2f", subTotal));
         tvDeliveryFee.setText(String.format(Locale.US, "$ %.2f", deliveryFee));

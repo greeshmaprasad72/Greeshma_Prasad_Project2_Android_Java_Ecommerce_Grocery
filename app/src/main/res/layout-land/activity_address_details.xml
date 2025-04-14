@@ -44,6 +44,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <ScrollView
+        android:id="@+id/sv_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -61,95 +62,101 @@
             android:layout_margin="10dp">
             <TextView
                 android:id="@+id/textview_name"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Name"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="5dp"
+                app:layout_constraintEnd_toStartOf="@id/textview_mobile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <EditText
                 android:id="@+id/edittext_name"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Enter name"
                 android:imeOptions="actionNext"
                 android:padding="13dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="5dp"
+                app:layout_constraintEnd_toStartOf="@id/edittext_mobile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textview_name" />
             <TextView
                 android:id="@+id/textview_mobile"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Mobile"
                 android:textSize="14sp"
+                android:layout_margin="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edittext_name" />
+                app:layout_constraintStart_toEndOf="@id/textview_name"
+                app:layout_constraintTop_toTopOf="parent" />
             <EditText
                 android:id="@+id/edittext_mobile"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Enter mobile"
+                android:layout_margin="5dp"
                 android:imeOptions="actionNext"
                 android:maxLength="10"
                 android:inputType="number"
                 android:padding="13dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/edittext_name"
                 app:layout_constraintTop_toBottomOf="@id/textview_mobile" />
             <TextView
                 android:id="@+id/textview_email"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Email"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="5dp"
+                app:layout_constraintEnd_toStartOf="@id/textview_building_name"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edittext_mobile" />
+                app:layout_constraintTop_toBottomOf="@id/edittext_name" />
             <EditText
                 android:id="@+id/edittext_email"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Enter email"
-                android:inputType="textEmailAddress"
                 android:imeOptions="actionNext"
                 android:padding="13dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="5dp"
+                app:layout_constraintEnd_toStartOf="@id/edittext_building_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textview_email" />
             <TextView
                 android:id="@+id/textview_building_name"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/building_name"
                 android:textSize="14sp"
+                android:layout_margin="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edittext_email" />
+                app:layout_constraintStart_toEndOf="@id/textview_email"
+                app:layout_constraintTop_toBottomOf="@id/edittext_mobile" />
             <EditText
                 android:id="@+id/edittext_building_name"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="@string/enter_building_name"
                 android:padding="13dp"
+                android:layout_margin="5dp"
                 android:imeOptions="actionNext"
-                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/edittext_email"
                 app:layout_constraintTop_toBottomOf="@id/textview_building_name" />
             <LinearLayout
                 android:id="@+id/ll_address_details"
@@ -217,8 +224,6 @@
                         android:background="@drawable/rounded_edittext"
                         android:fontFamily="@font/poppins_regular"
                         android:hint="@string/area"
-                        android:inputType="textPersonName"
-                        android:maxLines="1"
                         android:imeOptions="actionDone"
                         android:padding="13dp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -262,6 +267,7 @@
         android:background="@drawable/rounded_button"
         android:text="@string/proceed_to_payment"
         android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/sv_container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
